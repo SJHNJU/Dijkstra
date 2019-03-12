@@ -49,6 +49,8 @@ class SPF:
         for v in self.neighbor(w):
             if v not in self.Nbar:
                 self.D.update({v: min([self.D[v], self.D[w] + self.c(w, v)])})
+                if self.D[w] + self.c(w, v) <= self.D[v]:
+                    self.p.update({v: w})
 
     def is_Nbar_same_as_N(self):
         for u in self.N:
